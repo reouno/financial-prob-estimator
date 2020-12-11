@@ -1,0 +1,24 @@
+@startuml
+
+package Overview {
+    interface Data
+    interface Logic {
+        apply(Data)
+    }
+    interface Result
+
+    class Estimator {
+        do(data: Data, logic: Logic) -> Result
+    }
+    Data <.. Estimator
+    Logic <.. Estimator
+    Result <.. Estimator
+}
+
+package 上昇した日の翌日価格分布推定の具体例 {
+    object 2連続日のESデータ
+    class 上昇日でフィルタリングするルール
+    2連続日のESデータ <- 上昇日でフィルタリングするルール
+}
+
+@enduml
